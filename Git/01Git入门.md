@@ -298,3 +298,7 @@ git push origin --delete name
 git checkout name
 ```
 
+## 关于GitHub许可证的选择
+
+![image-20210723205933942](C:\Users\J-ADan\AppData\Roaming\Typora\typora-user-images\image-20210723205933942.png)
+
