@@ -153,6 +153,49 @@ public class Demo04 {
 
 ```
 
+```java
+package com.sdut;
+
+import java.util.Arrays;
+
+public class Test03 {
+    public static void main(String[] args) {
+        int[] arr01 = new int[10];
+        
+        //向一个数组填入某个值，所有的位置
+        Arrays.fill(arr01, 2);
+        printTest(arr01);
+
+        //向一个数组的特定的区间填入特定的值，前闭后开
+        int[] arr02 = new int[10];
+        Arrays.fill(arr02, 0, 3, 2);
+        printTest(arr02);
+    
+        //查找某个元素在数组的位置，返回下标值
+        int[] arr03 = new int[]{1, 2, 3, 4, 5};
+        int b = Arrays.binarySearch(arr03, 2);
+        System.out.println(b);
+
+        //对某个数组进行排序，系统自带的是快排
+        int[] arr04 = new int[]{2, 8, 4, 3, 12, 6};
+        Arrays.sort(arr04);
+        printTest(arr04);
+    }
+
+    public static void printTest(int arr[]) {
+        for (int k : arr) {
+            System.out.print(k + " ");
+        }
+        System.out.println();
+    }
+}
+
+```
+
+
+
+
+
 数组的倒置
 
 ```java
@@ -227,6 +270,91 @@ public class Demo02 {
 
 因为数组为引用类型，所以a3存放的是一个引用地址，所以改变a3，a1也会随之发生改变。
 
+
+
+1. 随机生成十个数
+2. 输出最大值
+3. 数组倒置输出
+4. 寻找某个特定的值
+
+```java
+package com.sdut;
+
+import java.util.Random;
+import java.util.Scanner;
+
+public class Test {
+    static Scanner sc = new Scanner(System.in);
+
+    public static void main(String[] args) {
+        int[] arr = new int[10];
+        randomEnter(arr);
+
+        int max = maxNumber(arr);
+        System.out.println("最大值为：" + max);
+        invert(arr);
+
+        System.out.println("输入想要查找的数字");
+        int key = Integer.parseInt(sc.nextLine());
+        Boolean b = searchNumber(arr, key);
+
+        if (b == true) {
+            System.out.println("存在");
+        } else {
+            System.out.println("不存在");
+        }
+    }
+
+    public static void randomEnter(int arr[]) {
+        Random ra = new Random();
+        for (int i = 0; i < arr.length; i++) {
+            arr[i] = ra.nextInt(10);
+        }
+    }
+
+    public static int maxNumber(int arr[]) {
+        int max = Integer.MIN_VALUE;
+
+        for (int k : arr) {
+            if (k > max) {
+                max = k;
+            }
+        }
+        return max;
+    }
+
+    public static void invert(int arr[]) {
+        for (int k : arr) {
+            System.out.print(k + " ");
+        }
+        System.out.println();
+        int taget = 0;
+        for (int i = 0, j = arr.length - 1; i < j; i++, j--) {
+            taget = arr[i];
+            arr[i] = arr[j];
+            arr[j] = taget;
+        }
+
+        for (int k : arr) {
+            System.out.print(k + " ");
+        }
+        System.out.println();
+    }
+
+    public static Boolean searchNumber(int arr[], int key) {
+        int i;
+        for (i = 0; i < arr.length; i++) {
+            if (arr[i] == key) {
+                return true;
+            }
+        }
+        return false;
+    }
+}
+```
+
+
+
 # 引用传递，值传递
 
 ```java
@@ -271,7 +399,68 @@ public class Demo03 {
 2 3 4 5 
 2
 
+**数组的复制：**
 
+```java
+package com.sdut;
+
+public class Test01 {
+    public static void main(String[] args) {
+        //数组的复制
+        //System类中提供的特殊的方法
+        int[] arr01 = new int[]{1, 2, 3, 4, 5, 6};
+        int [] arr02 = new int [arr01.length];
+        //
+        System.arraycopy(arr01,0,arr02,0,arr01.length);
+        /*
+        第一个参数：来源数组的名称（即获取其地址）
+        第二个参数：来源数组的起始位置，即从什么位置开始复制
+        第三个参数：目的数组的名称（获取目的数组的地址）
+        第四个参数：目的数组的起始位置，即复制的数值从什么地方插入
+        第五个参数：来源数组中需要复制的元素的个数，也为需要复制的长度
+         */
+
+        for (int k : arr01){
+            System.out.print(k + " ");
+        }
+        System.out.println();
+
+        for (int k : arr02){
+            System.out.print(k + " ");
+        }
+    }
+}
+
+```
+
+
+
+```java
+package com.sdut;
+
+import java.util.Arrays;
+
+public class Test02 {
+    public static void main(String[] args) {
+        int [] arr01 = new int [] {1,2,3,4,5,6};
+        int [] arr02;
+
+        arr02 = Arrays.copyOf(arr01,arr01.length - 2);
+        /*
+        第一个参数，原数组名称，即获取其地址
+        第二个参数，复制的长度
+        这个方法复制的起始点默认为0
+         */
+        for (int k : arr01){
+            System.out.print(k + " ");
+        }
+        System.out.println();
+        for (int k : arr02){
+            System.out.print(k + " ");
+        }
+    }
+}
+```
 
 # 二维数组
 
