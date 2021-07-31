@@ -46,13 +46,13 @@ public class Demo03 {
 
 ## 异常的分类
 
-1. 检查性异常
+1. 检查性异常（非运行异常、明文异常、编译时异常）**RuntimeException**
 
-   最具代表的检查性异常是用户错误或问题引起的，这是程序员无法预见的。
+   最具代表的检查性异常是用户错误或问题引起的，这是程序员无法预见的。**必须进行异常处理**
 
-2. 运行时异常
+2. 运行时异常（非明文异常、非检查异常）**Exception**
 
-   运行时异常时可能被程序员避免的异常，与检查性异常相反，运行时异常可以在编译时被忽略。
+   运行时异常时可能被程序员避免的异常，与检查性异常相反，运行时异常可以在编译时被忽略。**可以进行异常处理**
 
 3. 错误
 
@@ -64,7 +64,9 @@ public class Demo03 {
 
 ![image-20210727080947252](C:\Users\J-ADan\AppData\Roaming\Typora\typora-user-images\image-20210727080947252.png)
 
-Java把一场当作对象来处理，并且定义一个基类 java.lang.Throwable 作为所有异常的超类。
+**Java把一场当作对象来处理，并且定义一个基类 java.lang.Throwable 作为所有异常的超类。**
+
+**Exception 式所有异常类的超类。**
 
 Java API 已经定义了许多的异常类，这些异常类分为两类，Error（错误）和 Exception（异常）。
 
@@ -116,7 +118,7 @@ Error通常是灾难性的致命的错误，是程序无法控制和处理的，
 
 异常处理的五个关键字：
 
-try、catch、finally、throw、throws。
+**try、catch、finally、throw、throws。**
 
 
 
@@ -150,7 +152,7 @@ public class Demo04 {
 
         try {//try的监控区域，此区域出现异常，则会被catch捕获
             System.out.println(a / b);
-        } catch (ArithmeticException e) {//内部参数是想要捕获的异常类型
+        } catch (ArithmeticException e) {//内部参数是想要捕获的异常类型，必须写try区域可能会出现的异常，可以是运行时异常，可以是能发生的编译时异常
             //catch捕获异常，并执行catch代码块代码
             System.out.println("出现异常，除数不能为0");
         } finally {
@@ -166,7 +168,7 @@ public class Demo04 {
 
 **finally 语句大部分情况是不写的，也可以说是不需要的，但是在IO流，调用资源，关闭文件，数据库链接等，是必须要做最后的关闭善后工作的**
 
-当然，一个程序中可以捕获多个异常但是要把最大的异常类型写在最后。
+**当然，一个程序中可以捕获多个异常但是要把最大的异常类型写在最后。**
 
 
 
@@ -189,9 +191,11 @@ public class TestAll {
 }
 ```
 
+**如果try区域不会出现异常，catch语句可以不存在。**
+
+
+
 一般主动抛出异常都是在函数中，并且是使用throws
-
-
 
 ```java
 package com.sdut;
