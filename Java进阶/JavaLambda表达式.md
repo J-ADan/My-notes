@@ -164,3 +164,17 @@ public class LambdaTest05 {
 
 
 
+## 常见的函数式接口
+
+* java.lang.Runnable
+* java.util.Comparator
+* java.awt.event.ActionListener
+* java.util.function
+* java.util.function.Predicate
+
+
+
+函数式接口李允许定义java.lang.Object 里的 public 方法，这些方法对于函数式接口来说，即使是抽象方法的写法也不会被认为是抽象等待，因为任何函数式接口的实现，默认都继承了Object类，包含了来自java.lang.Object 里对这些抽象方法的实现。
+
+函数式接口里面允许定义默认方法，因为默认方法不是抽象方法，其有一个默认实现，所以是符合函数式接口的定义。
+
